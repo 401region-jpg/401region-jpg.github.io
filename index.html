@@ -1,0 +1,653 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lesotend — Тендерное сопровождение</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --charcoal:    #272B33;
+    --charcoal-md: #353A44;
+    --charcoal-lt: #454C59;
+    --sage:        #4A6B6F;
+    --sage-md:     #6A9099;
+    --sage-pale:   #EAF1F2;
+    --sage-border: rgba(74,107,111,0.22);
+    --stone:       #F4F2EE;
+    --stone-md:    #E8E5DF;
+    --stone-dark:  #D0CDC6;
+    --white:       #FAFAFA;
+    --text:        #272B33;
+    --muted:       #6B7280;
+    --subtle:      #9CA3AF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--stone);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: var(--charcoal);
+    padding: 0 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 58px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  nav .logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.9rem;
+    font-weight: 400;
+    color: var(--sage-md);
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+  nav ul { list-style: none; display: flex; gap: 2.4rem; }
+  nav a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: rgba(255,255,255,0.9); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    background: var(--charcoal);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 80px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(90deg,
+        rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px,
+        transparent 1px, transparent 80px),
+      repeating-linear-gradient(0deg,
+        rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px,
+        transparent 1px, transparent 80px);
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    right: -80px; top: -80px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(106,144,153,0.1);
+    pointer-events: none;
+  }
+  .hero-text {
+    padding: 4.5rem 2.5rem 4.5rem 5vw;
+    animation: fadeUp 0.85s ease both;
+    position: relative;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage-md);
+    margin-bottom: 2rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 28px; height: 1px;
+    background: var(--sage-md);
+  }
+  .hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+    font-weight: 600;
+    line-height: 1.18;
+    color: #fff;
+    margin-bottom: 1.6rem;
+  }
+  .hero-text h1 em { font-style: italic; color: var(--sage-md); }
+  .hero-text > p {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.97rem;
+    font-weight: 300;
+    max-width: 400px;
+    margin-bottom: 2.5rem;
+    line-height: 1.9;
+  }
+  .hero-stats {
+    display: flex; gap: 2.5rem; flex-wrap: wrap;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat { display: flex; flex-direction: column; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 600;
+    color: var(--sage-md); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.38);
+    letter-spacing: 0.04em; margin-top: 0.3rem;
+  }
+
+  /* HERO PHOTO COLUMN */
+  .hero-photo-col {
+    padding: 3rem 5vw 3rem 1.5rem;
+    animation: fadeUp 1s ease both;
+    display: flex; justify-content: center; align-items: center;
+    position: relative;
+  }
+  .photo-frame {
+    position: relative;
+    width: 100%;
+    max-width: 310px;
+  }
+  /* 955:1280 ratio = 74.6% width to height */
+  .photo-frame::before {
+    content: '';
+    display: block;
+    padding-top: 134%; /* 1280/955 */
+  }
+  .photo-placeholder {
+    position: absolute;
+    inset: 0;
+    background: var(--charcoal-md);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    overflow: hidden;
+  }
+  .photo-placeholder:hover { border-color: rgba(106,144,153,0.4); }
+  .photo-placeholder img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: none; /* shown by JS when loaded */
+  }
+  .photo-placeholder-inner {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 0.7rem;
+    pointer-events: none;
+  }
+  .photo-icon {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    border: 1px solid rgba(106,144,153,0.3);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .photo-icon svg { width: 22px; height: 22px; opacity: 0.4; }
+  .photo-hint {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.06em;
+    text-align: center;
+    line-height: 1.6;
+  }
+  .photo-hint strong {
+    display: block;
+    color: rgba(106,144,153,0.6);
+    font-weight: 500;
+    font-size: 0.68rem;
+  }
+  .photo-upload-input {
+    position: absolute; inset: 0;
+    opacity: 0; cursor: pointer; z-index: 2;
+  }
+  /* decorative corner lines */
+  .photo-frame::after {
+    content: '';
+    position: absolute;
+    left: -10px; bottom: -10px;
+    width: 60px; height: 60px;
+    border-left: 1px solid rgba(74,107,111,0.35);
+    border-bottom: 1px solid rgba(74,107,111,0.35);
+    pointer-events: none;
+  }
+  .photo-corner-tr {
+    position: absolute;
+    right: -10px; top: -10px;
+    width: 60px; height: 60px;
+    border-right: 1px solid rgba(74,107,111,0.35);
+    border-top: 1px solid rgba(74,107,111,0.35);
+    pointer-events: none;
+  }
+
+  /* NAME BLOCK under photo */
+  .photo-name {
+    margin-top: 1.2rem;
+    text-align: center;
+  }
+  .photo-name h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; color: #fff; font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+  .photo-name .role {
+    font-size: 0.7rem; color: var(--sage-md);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .photo-name .note {
+    font-size: 0.74rem;
+    color: rgba(106,144,153,0.45);
+    margin-top: 0.5rem;
+    line-height: 1.6;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 5vw; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--sage);
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 0.9rem;
+  }
+  .section-label::before {
+    content: ''; width: 22px; height: 1px; background: var(--sage); flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+    font-weight: 600; color: var(--charcoal);
+    line-height: 1.2; margin-bottom: 2.8rem;
+  }
+  .section-title-light { color: #fff; }
+
+  /* SERVICES */
+  #services { background: var(--white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--stone-dark);
+    background: var(--stone-dark);
+  }
+  .service-card {
+    background: var(--white);
+    padding: 2.2rem 2rem;
+    transition: background 0.25s;
+  }
+  .service-card:hover { background: var(--stone); }
+  .service-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.8rem; color: var(--stone-dark);
+    letter-spacing: 0.1em; margin-bottom: 1.4rem;
+  }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 600;
+    color: var(--charcoal); margin-bottom: 0.8rem; line-height: 1.35;
+  }
+  .service-card p {
+    font-size: 0.87rem; color: var(--muted); line-height: 1.75; font-weight: 300;
+  }
+  .service-line {
+    width: 24px; height: 1px;
+    background: var(--sage); margin: 1rem 0;
+  }
+
+  /* LEARNING */
+  #learning { background: var(--charcoal); }
+  .learning-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .learn-card {
+    background: var(--charcoal-md);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 2px; padding: 2.2rem;
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .learn-card:hover {
+    border-color: rgba(106,144,153,0.35);
+    background: var(--charcoal-lt);
+  }
+  .learn-badge {
+    display: inline-block; font-size: 0.64rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.22rem 0.75rem; margin-bottom: 1.2rem;
+    border-radius: 1px; font-weight: 500;
+  }
+  .badge-paid   { background: rgba(74,107,111,0.2);  color: var(--sage-md); border: 1px solid rgba(74,107,111,0.3); }
+  .badge-mentor { background: rgba(74,107,111,0.12); color: #8DBDC5; border: 1px solid rgba(106,144,153,0.25); }
+  .learn-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 600;
+    color: #fff; margin-bottom: 0.8rem; line-height: 1.35;
+  }
+  .learn-card > p {
+    font-size: 0.87rem; color: rgba(255,255,255,0.42);
+    line-height: 1.8; font-weight: 300; margin-bottom: 1.2rem;
+  }
+  .learn-list { list-style: none; }
+  .learn-list li {
+    font-size: 0.84rem; color: rgba(255,255,255,0.48);
+    padding: 0.35rem 0; padding-left: 1rem;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-weight: 300;
+  }
+  .learn-list li:last-child { border-bottom: none; }
+  .learn-list li::before {
+    content: ''; position: absolute; left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 4px; height: 1px; background: var(--sage);
+  }
+  /* divider inside mentor card between two merged blocks */
+  .learn-divider {
+    margin: 1.2rem 0;
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .learn-sublabel {
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.28);
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+
+  /* CTA */
+  #cta {
+    background: var(--charcoal);
+    text-align: center; padding: 6rem 5vw;
+    position: relative; overflow: hidden;
+  }
+  #cta::before {
+    content: '';
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px; border-radius: 50%;
+    border: 1px solid rgba(106,144,153,0.07);
+    pointer-events: none;
+  }
+  #cta::after {
+    content: '';
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 340px; height: 340px; border-radius: 50%;
+    border: 1px solid rgba(106,144,153,0.09);
+    pointer-events: none;
+  }
+  #cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    font-weight: 600; color: #fff; margin-bottom: 1rem; position: relative;
+  }
+  #cta p {
+    color: rgba(255,255,255,0.42); margin-bottom: 2.5rem;
+    font-size: 0.92rem; font-weight: 300; position: relative;
+  }
+  .btn-cta {
+    display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 1rem 3rem;
+    background: transparent; color: var(--sage-md);
+    text-decoration: none;
+    border: 1px solid rgba(106,144,153,0.4);
+    border-radius: 1px;
+    transition: background 0.25s, border-color 0.25s, color 0.25s;
+    position: relative;
+  }
+  .btn-cta:hover {
+    background: rgba(74,107,111,0.15);
+    border-color: var(--sage-md); color: #fff;
+  }
+  .cta-contacts {
+    margin-top: 2rem; position: relative;
+    display: flex; justify-content: center; align-items: center;
+    flex-wrap: wrap; gap: 0.6rem;
+    font-size: 0.82rem; color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
+  }
+  .cta-contacts a {
+    color: rgba(255,255,255,0.78); text-decoration: none;
+    border-bottom: 1px solid rgba(106,144,153,0.35);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .cta-contacts a:hover { color: #fff; border-color: var(--sage-md); }
+  .cta-sep { color: rgba(255,255,255,0.3); }
+
+  /* FOOTER */
+  footer {
+    background: #1C1F25; text-align: center;
+    padding: 2rem; font-size: 0.76rem;
+    color: rgba(255,255,255,0.22); letter-spacing: 0.04em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  [contenteditable="true"]:hover { outline: 1px dashed rgba(74,107,111,0.4); border-radius: 1px; cursor: text; }
+  [contenteditable="true"]:focus { outline: 1px solid var(--sage); border-radius: 1px; }
+
+  @media (max-width: 800px) {
+    #hero { grid-template-columns: 1fr; padding-top: 70px; }
+    .hero-photo-col { padding: 2rem; }
+    .photo-frame { max-width: 240px; }
+    nav ul { display: none; }
+    nav { padding: 0 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="logo">Lesotend</span>
+  <ul>
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#learning">Обучение</a></li>
+    <li><a href="#cta">Контакт</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <span class="hero-tag">Тендерное сопровождение</span>
+    <h1>Системная работа<br/>с государственными<br/><em>и коммерческими торгами</em></h1>
+    <p contenteditable="true">Профессиональная поддержка участников закупок на каждом этапе — от подготовки заявки до заключения контракта. Помогаю бизнесу уверенно входить в тендеры и выстраивать стабильный поток контрактов.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">1000+</span>
+        <span class="stat-label">успешных контрактов</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">10 лет</span>
+        <span class="stat-label">опыт в сфере закупок</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">15</span>
+        <span class="stat-label">обученных специалистов</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO COLUMN -->
+  <div class="hero-photo-col">
+    <div>
+      <div class="photo-frame">
+        <span class="photo-corner-tr"></span>
+        <div class="photo-placeholder" id="photoBox">
+          <img id="photoImg" src="assets/victoria-anna.jpg" alt="Виктория-Анна Лесонен" style="display:block"/>
+          <div class="photo-placeholder-inner" id="photoHint" style="display:none">
+            <div class="photo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+            </div>
+            <div class="photo-hint">
+              Нажмите, чтобы загрузить фото<br/>
+              <strong>955 × 1280 px · до 100 кб</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="photo-name">
+        <h3 contenteditable="true">Виктория-Анна Лесонен</h3>
+        <div class="role" contenteditable="true">Тендерный специалист · Наставник</div>
+        <div class="note" contenteditable="true">Сертифицированный специалист по госзакупкам · 44-ФЗ · 223-ФЗ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- УСЛУГИ -->
+<section id="services">
+  <div class="section-inner">
+    <span class="section-label">Что я делаю</span>
+    <h2 class="section-title">Услуги тендерного сопровождения</h2>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Подготовка и подача заявки</h3>
+        <div class="service-line"></div>
+        <p>Анализ документации, подготовка заявки под требования площадки, проверка на ошибки, подача и мониторинг результатов.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Поиск и отбор тендеров</h3>
+        <div class="service-line"></div>
+        <p>Подбор подходящих закупок по вашим ОКВЭД, возможностям и регионам. Оценка рисков и вероятности победы. Работа с агрегаторами закупок.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>Работа с протоколами и жалобами</h3>
+        <div class="service-line"></div>
+        <p>Анализ протоколов рассмотрения, подготовка жалоб в ФАС, обжалование неправомерных решений. Претензионная переписка с Заказчиком по нарушениям сроков и оплаты исполнения контракта.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>Сопровождение исполнения контракта</h3>
+        <div class="service-line"></div>
+        <p>Сроки, документооборот, приёмка результатов, закрывающие документы. Работа в ПИК, ЕИС, ЭДО ЕАСУЗ.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <h3>Банковские гарантии и обеспечение</h3>
+        <div class="service-line"></div>
+        <p>Помощь в получении банковской гарантии, расчёт обеспечения заявки и исполнения контракта.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <h3 contenteditable="true">Дополнительная услуга</h3>
+        <div class="service-line"></div>
+        <p contenteditable="true">Кликните и добавьте описание ещё одной услуги. Текст редактируется прямо здесь.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ОБУЧЕНИЕ -->
+<section id="learning">
+  <div class="section-inner">
+    <span class="section-label" style="color:var(--sage-md);">Знания и инструменты</span>
+    <h2 class="section-title section-title-light">Обучение и готовые материалы</h2>
+    <div class="learning-grid">
+
+      <!-- ПЛАТНЫЕ МАТЕРИАЛЫ -->
+      <div class="learn-card">
+        <span class="learn-badge badge-paid">Платные материалы</span>
+        <h3>Шаблоны и чек-листы</h3>
+        <p>Готовые инструменты для участников тендеров. Экономьте время и не допускайте типичных ошибок.</p>
+        <ul class="learn-list">
+          <li>Чек-лист проверки документации заявки</li>
+          <li>Шаблон заявки на участие (44-ФЗ)</li>
+          <li>Шаблон жалобы в ФАС</li>
+          <li>Шаблон коммерческого предложения</li>
+        </ul>
+      </div>
+
+      <!-- НАСТАВНИЧЕСТВО — объединено с курсом -->
+      <div class="learn-card" style="grid-column: span 1;">
+        <span class="learn-badge badge-mentor">Наставничество</span>
+        <h3>Программа для тендерных специалистов</h3>
+        <p>Индивидуальная программа профессионального роста — от начинающего до уверенного эксперта. Включает курс по выходу на госзакупки для малого бизнеса.</p>
+
+        <span class="learn-sublabel">Блок: Госзакупки для малого бизнеса</span>
+        <ul class="learn-list">
+          <li>Поиск и анализ подходящих закупок</li>
+          <li>Подготовка первой заявки без ошибок</li>
+          <li>Стратегия ценообразования на торгах</li>
+          <li>Исполнение контракта после победы</li>
+        </ul>
+
+        <hr class="learn-divider"/>
+
+        <span class="learn-sublabel">Блок: Наставничество для специалистов</span>
+        <ul class="learn-list">
+          <li>Личные сессии с разбором реальных кейсов</li>
+          <li>Проработка сложных ситуаций и протоколов</li>
+          <li>Карьерный рост и построение репутации</li>
+          <li>Закрытое профессиональное сообщество</li>
+          <li>Обратная связь по заявкам в реальном времени</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <h2>Готовы выйти на торги системно?</h2>
+  <p>Запишитесь на бесплатную консультацию — разберём вашу ситуацию и подберём формат работы.</p>
+  <a href="https://t.me/Victoria_Anna_L" target="_blank" rel="noopener" class="btn-cta">Записаться на консультацию</a>
+  <div class="cta-contacts">
+    <span class="cta-contacts-label">Почта:</span>
+    <a href="mailto:9269696013vv@gmail.com">9269696013vv@gmail.com</a>
+    <span class="cta-sep">·</span>
+    <a href="https://t.me/Victoria_Anna_L" target="_blank" rel="noopener">Telegram: @Victoria_Anna_L</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p contenteditable="true">© 2025 · Виктория-Анна Лесонен · Тендерное сопровождение · Lesotend</p>
+</footer>
+
+</body>
+</html>
