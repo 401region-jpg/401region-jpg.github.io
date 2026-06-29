@@ -1,13 +1,53 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Lesotend — Тендерное сопровождение</title>
+<meta name="theme-color" content="#272B33"/>
+<title>Lesotend — Тендерное сопровождение под ключ</title>
+<meta name="description" content="Тендерное сопровождение под ключ: 44-ФЗ, 223-ФЗ, коммерция. 10 лет опыта, 250+ закупок в год. Бесплатная проверка заявки. Контрактный управляющий Виктория-Анна Лесонен."/>
+<meta property="og:title" content="Lesotend — Тендерное сопровождение под ключ"/>
+<meta property="og:description" content="Превращаю тендеры в инструмент роста. 44-ФЗ, 223-ФЗ, коммерция — без ошибок и переплат."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://lesotend.ru"/>
+<meta property="og:image" content="https://lesotend.ru/assets/victoria-anna.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Lesotend — Тендерное сопровождение под ключ"/>
+<meta name="twitter:description" content="Превращаю тендеры в инструмент роста. 44-ФЗ, 223-ФЗ, коммерция — без ошибок и переплат."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Lesotend — Тендерное сопровождение",
+  "description": "Тендерное сопровождение под ключ: 44-ФЗ, 223-ФЗ, коммерция. Превращаю тендеры в инструмент роста.",
+  "url": "https://lesotend.ru",
+  "image": "https://lesotend.ru/assets/victoria-anna.jpg",
+  "founder": {
+    "@type": "Person",
+    "name": "Виктория-Анна Лесонен"
+  },
+  "areaServed": "RU",
+  "priceRange": "$$",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Услуги тендерного сопровождения",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Подготовка и подача заявки" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Поиск и отбор тендеров" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Работа с протоколами и жалобами в ФАС" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Сопровождение исполнения контракта" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Банковские гарантии и обеспечение" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Разовая консультация по тендеру" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Абонентское тендерное сопровождение" } }
+    ]
+  }
+}
+</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap"/>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet"/>
 <style>
   :root {
     --charcoal:    #272B33;
@@ -36,6 +76,7 @@
   }
 
   /* NAV */
+  .nav-toggle { display: none; }
   nav {
     position: fixed; top: 0; width: 100%; z-index: 100;
     background: var(--charcoal);
@@ -63,6 +104,31 @@
     transition: color 0.2s;
   }
   nav a:hover { color: rgba(255,255,255,0.9); }
+
+  .nav-toggle-label {
+    display: none;
+    width: 24px; height: 18px;
+    position: relative;
+    cursor: pointer;
+    z-index: 101;
+  }
+  .nav-toggle-label span,
+  .nav-toggle-label span::before,
+  .nav-toggle-label span::after {
+    display: block;
+    width: 24px; height: 2px;
+    background: rgba(255,255,255,0.6);
+    position: absolute;
+    border-radius: 1px;
+    transition: 0.3s;
+  }
+  .nav-toggle-label span { top: 8px; }
+  .nav-toggle-label span::before { content: ''; top: -7px; }
+  .nav-toggle-label span::after { content: ''; top: 7px; }
+
+  #nav-toggle:checked ~ nav .nav-toggle-label span { background: transparent; }
+  #nav-toggle:checked ~ nav .nav-toggle-label span::before { top: 0; transform: rotate(45deg); }
+  #nav-toggle:checked ~ nav .nav-toggle-label span::after { top: 0; transform: rotate(-45deg); }
 
   /* HERO */
   #hero {
@@ -117,18 +183,18 @@
   }
   .hero-text h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+    font-size: clamp(2rem, 3.6vw, 3.2rem);
     font-weight: 600;
-    line-height: 1.18;
+    line-height: 1.2;
     color: #fff;
     margin-bottom: 1.6rem;
   }
-  .hero-text h1 em { font-style: italic; color: var(--sage-md); }
+  .hero-text h1 span { color: var(--sage-md); }
   .hero-text > p {
     color: rgba(255,255,255,0.5);
     font-size: 0.97rem;
     font-weight: 300;
-    max-width: 400px;
+    max-width: 460px;
     margin-bottom: 2.5rem;
     line-height: 1.9;
   }
@@ -161,66 +227,21 @@
     width: 100%;
     max-width: 310px;
   }
-  /* 955:1280 ratio = 74.6% width to height */
   .photo-frame::before {
     content: '';
     display: block;
-    padding-top: 134%; /* 1280/955 */
+    padding-top: 134%;
   }
-  .photo-placeholder {
-    position: absolute;
-    inset: 0;
-    background: var(--charcoal-md);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 2px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
-    cursor: pointer;
-    transition: border-color 0.25s;
-    overflow: hidden;
-  }
-  .photo-placeholder:hover { border-color: rgba(106,144,153,0.4); }
-  .photo-placeholder img {
+  .photo-frame .photo-img {
     position: absolute;
     inset: 0;
     width: 100%; height: 100%;
     object-fit: cover;
     object-position: top center;
-    display: none; /* shown by JS when loaded */
+    background: var(--charcoal-md);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2px;
   }
-  .photo-placeholder-inner {
-    display: flex; flex-direction: column;
-    align-items: center; gap: 0.7rem;
-    pointer-events: none;
-  }
-  .photo-icon {
-    width: 52px; height: 52px;
-    border-radius: 50%;
-    border: 1px solid rgba(106,144,153,0.3);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .photo-icon svg { width: 22px; height: 22px; opacity: 0.4; }
-  .photo-hint {
-    font-size: 0.72rem;
-    color: rgba(255,255,255,0.25);
-    letter-spacing: 0.06em;
-    text-align: center;
-    line-height: 1.6;
-  }
-  .photo-hint strong {
-    display: block;
-    color: rgba(106,144,153,0.6);
-    font-weight: 500;
-    font-size: 0.68rem;
-  }
-  .photo-upload-input {
-    position: absolute; inset: 0;
-    opacity: 0; cursor: pointer; z-index: 2;
-  }
-  /* decorative corner lines */
   .photo-frame::after {
     content: '';
     position: absolute;
@@ -237,9 +258,9 @@
     border-right: 1px solid rgba(74,107,111,0.35);
     border-top: 1px solid rgba(74,107,111,0.35);
     pointer-events: none;
+    z-index: 1;
   }
 
-  /* NAME BLOCK under photo */
   .photo-name {
     margin-top: 1.2rem;
     text-align: center;
@@ -285,13 +306,17 @@
   .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1px;
+    gap: 0;
+    background: var(--white);
     border: 1px solid var(--stone-dark);
-    background: var(--stone-dark);
+    border-right: none;
+    border-bottom: none;
   }
   .service-card {
     background: var(--white);
     padding: 2.2rem 2rem;
+    border-right: 1px solid var(--stone-dark);
+    border-bottom: 1px solid var(--stone-dark);
     transition: background 0.25s;
   }
   .service-card:hover { background: var(--stone); }
@@ -313,67 +338,154 @@
     background: var(--sage); margin: 1rem 0;
   }
 
-  /* LEARNING */
-  #learning { background: var(--charcoal); }
-  .learning-grid {
+  /* SERVICES EXTRA TEXT */
+  .services-footer {
+    margin-top: 3rem;
+    padding: 2.5rem;
+    background: var(--stone);
+    border: 1px solid var(--stone-dark);
+    border-radius: 2px;
+  }
+  .services-footer .sft {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+  }
+  .services-footer p {
+    font-size: 0.92rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 0.8rem;
+  }
+  .services-footer p:last-child { margin-bottom: 0; }
+  .services-footer ul {
+    list-style: none;
+    margin: 0.8rem 0;
+  }
+  .services-footer ul li {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 300;
+    padding: 0.3rem 0 0.3rem 1.2rem;
+    position: relative;
+  }
+  .services-footer ul li::before {
+    content: '';
+    position: absolute; left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--sage);
+    opacity: 0.5;
+  }
+  .services-footer .sf-cta {
+    margin-top: 1.2rem;
+    font-weight: 500;
+    color: var(--charcoal);
+  }
+  .services-footer .sf-cta a {
+    color: var(--sage);
+    text-decoration: none;
+    border-bottom: 1px solid var(--sage-border);
+  }
+  .services-footer .sf-cta a:hover { color: var(--charcoal); }
+
+  /* FORMATS */
+  #formats { background: var(--charcoal); }
+  .formats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
   }
-  .learn-card {
+  .format-card {
     background: var(--charcoal-md);
     border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 2px; padding: 2.2rem;
+    border-radius: 2px;
+    padding: 2rem;
     transition: border-color 0.25s, background 0.25s;
   }
-  .learn-card:hover {
+  .format-card:hover {
     border-color: rgba(106,144,153,0.35);
     background: var(--charcoal-lt);
   }
-  .learn-badge {
-    display: inline-block; font-size: 0.64rem;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    padding: 0.22rem 0.75rem; margin-bottom: 1.2rem;
-    border-radius: 1px; font-weight: 500;
-  }
-  .badge-paid   { background: rgba(74,107,111,0.2);  color: var(--sage-md); border: 1px solid rgba(74,107,111,0.3); }
-  .badge-mentor { background: rgba(74,107,111,0.12); color: #8DBDC5; border: 1px solid rgba(106,144,153,0.25); }
-  .learn-card h3 {
+  .format-num {
     font-family: 'Playfair Display', serif;
-    font-size: 1.15rem; font-weight: 600;
-    color: #fff; margin-bottom: 0.8rem; line-height: 1.35;
+    font-size: 0.75rem;
+    color: var(--sage-md);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
   }
-  .learn-card > p {
-    font-size: 0.87rem; color: rgba(255,255,255,0.42);
-    line-height: 1.8; font-weight: 300; margin-bottom: 1.2rem;
+  .format-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.7rem;
   }
-  .learn-list { list-style: none; }
-  .learn-list li {
-    font-size: 0.84rem; color: rgba(255,255,255,0.48);
-    padding: 0.35rem 0; padding-left: 1rem;
-    position: relative;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
+  .format-card .format-desc {
+    font-size: 0.87rem;
+    color: rgba(255,255,255,0.5);
     font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 0.8rem;
   }
-  .learn-list li:last-child { border-bottom: none; }
-  .learn-list li::before {
-    content: ''; position: absolute; left: 0; top: 50%;
-    transform: translateY(-50%);
-    width: 4px; height: 1px; background: var(--sage);
+  .format-card .format-for {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--sage-md);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
   }
-  /* divider inside mentor card between two merged blocks */
-  .learn-divider {
-    margin: 1.2rem 0;
-    border: none;
-    border-top: 1px solid rgba(255,255,255,0.07);
+
+  /* PRICE */
+  #price { background: var(--white); }
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
   }
-  .learn-sublabel {
+  .price-card {
+    background: var(--stone);
+    border: 1px solid var(--stone-dark);
+    border-radius: 2px;
+    padding: 2rem;
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .price-card:hover {
+    background: var(--white);
+    border-color: var(--sage-border);
+  }
+  .price-card .price-label {
     font-size: 0.64rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.28);
+    color: var(--subtle);
+    margin-bottom: 0.3rem;
+  }
+  .price-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--charcoal);
     margin-bottom: 0.6rem;
-    display: block;
+  }
+  .price-card p {
+    font-size: 0.87rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.75;
+  }
+  .price-card .price-note {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-size: 0.72rem;
+    color: var(--sage);
+    font-weight: 400;
   }
 
   /* CTA */
@@ -413,16 +525,18 @@
     font-size: 0.75rem; font-weight: 600;
     letter-spacing: 0.14em; text-transform: uppercase;
     padding: 1rem 3rem;
-    background: transparent; color: var(--sage-md);
+    background: rgba(74,107,111,0.2);
+    color: #fff;
     text-decoration: none;
-    border: 1px solid rgba(106,144,153,0.4);
-    border-radius: 1px;
-    transition: background 0.25s, border-color 0.25s, color 0.25s;
+    border: 1px solid var(--sage-md);
+    border-radius: 2px;
+    transition: background 0.25s, border-color 0.25s;
     position: relative;
   }
   .btn-cta:hover {
-    background: rgba(74,107,111,0.15);
-    border-color: var(--sage-md); color: #fff;
+    background: var(--sage-md);
+    border-color: var(--sage-md);
+    color: #fff;
   }
   .cta-contacts {
     margin-top: 2rem; position: relative;
@@ -452,27 +566,44 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  [contenteditable="true"]:hover { outline: 1px dashed rgba(74,107,111,0.4); border-radius: 1px; cursor: text; }
-  [contenteditable="true"]:focus { outline: 1px solid var(--sage); border-radius: 1px; }
-
   @media (max-width: 800px) {
     #hero { grid-template-columns: 1fr; padding-top: 70px; }
     .hero-photo-col { padding: 2rem; }
     .photo-frame { max-width: 240px; }
-    nav ul { display: none; }
+
     nav { padding: 0 1.5rem; }
+    .nav-toggle-label { display: block; }
+    nav ul {
+      display: none;
+      position: absolute;
+      top: 58px; left: 0; width: 100%;
+      flex-direction: column;
+      background: var(--charcoal);
+      padding: 1rem 2rem;
+      gap: 0.2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    nav ul li { padding: 0.6rem 0; }
+    #nav-toggle:checked ~ nav ul { display: flex; }
+
+    section { padding: 4rem 5vw; }
+    .services-footer { padding: 1.5rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<input type="checkbox" id="nav-toggle" class="nav-toggle">
 <nav>
+  <label for="nav-toggle" class="nav-toggle-label">
+    <span></span>
+  </label>
   <span class="logo">Lesotend</span>
   <ul>
     <li><a href="#services">Услуги</a></li>
-    <li><a href="#learning">Обучение</a></li>
-    <li><a href="#cta">Контакт</a></li>
+    <li><a href="#formats">Форматы</a></li>
+    <li><a href="#price">Цены</a></li>
+    <li><a href="#cta">Контакты</a></li>
   </ul>
 </nav>
 
@@ -480,8 +611,8 @@
 <section id="hero">
   <div class="hero-text">
     <span class="hero-tag">Тендерное сопровождение</span>
-    <h1>Системная работа<br/>с государственными<br/><em>и коммерческими торгами</em></h1>
-    <p contenteditable="true">Профессиональная поддержка участников закупок на каждом этапе — от подготовки заявки до заключения контракта. Помогаю бизнесу уверенно входить в тендеры и выстраивать стабильный поток контрактов.</p>
+    <h1>Превращаю тендеры<br/>в инструмент роста.<br/><span>44-ФЗ, 223-ФЗ, коммерция — без ошибок и переплат</span></h1>
+    <p>Я — внешний тендерный отдел для вашего бизнеса. Беру на себя всю бюрократию, чтобы вы могли сосредоточиться на развитии компании. Помогаю поставщикам и подрядчикам выигрывать государственные и коммерческие тендеры без ошибок, переплат и срывов сроков.</p>
     <div class="hero-stats">
       <div class="stat">
         <span class="stat-num">1000+</span>
@@ -491,38 +622,19 @@
         <span class="stat-num">10 лет</span>
         <span class="stat-label">опыт в сфере закупок</span>
       </div>
-      <div class="stat">
-        <span class="stat-num">15</span>
-        <span class="stat-label">обученных специалистов</span>
-      </div>
     </div>
   </div>
 
-  <!-- PHOTO COLUMN -->
   <div class="hero-photo-col">
     <div>
       <div class="photo-frame">
         <span class="photo-corner-tr"></span>
-        <div class="photo-placeholder" id="photoBox">
-          <img id="photoImg" src="assets/victoria-anna.jpg" alt="Виктория-Анна Лесонен" style="display:block"/>
-          <div class="photo-placeholder-inner" id="photoHint" style="display:none">
-            <div class="photo-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
-                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
-                <polyline points="21 15 16 10 5 21"/>
-              </svg>
-            </div>
-            <div class="photo-hint">
-              Нажмите, чтобы загрузить фото<br/>
-              <strong>955 × 1280 px · до 100 кб</strong>
-            </div>
-          </div>
-        </div>
+        <img class="photo-img" src="assets/victoria-anna.jpg" alt="Виктория-Анна Лесонен — Контрактный управляющий"/>
       </div>
       <div class="photo-name">
-        <h3 contenteditable="true">Виктория-Анна Лесонен</h3>
-        <div class="role" contenteditable="true">Тендерный специалист · Наставник</div>
-        <div class="note" contenteditable="true">Сертифицированный специалист по госзакупкам · 44-ФЗ · 223-ФЗ</div>
+        <h3>Виктория-Анна Лесонен</h3>
+        <div class="role">Контрактный управляющий / Эксперт по госзакупкам</div>
+        <div class="note">10 лет опыта · 250+ закупок в год · 37 млн ₽ прибыли клиентов за 2025 год</div>
       </div>
     </div>
   </div>
@@ -571,53 +683,82 @@
       </div>
 
     </div>
+
+    <!-- Дополнительный текст под Услугами -->
+    <div class="services-footer">
+      <p class="sft">Тендерное сопровождение под ключ: от идеи до подписанного контракта</p>
+      <p>Я — внешний тендерный отдел для вашего бизнеса. Беру на себя всю бюрократию, чтобы вы могли заниматься развитием, а не разбираться в 44-ФЗ.</p>
+      <p>Что я делаю:</p>
+      <ul>
+        <li>Ищу прибыльные закупки, которые вам подходят;</li>
+        <li>Проверяю документацию на скрытые риски;</li>
+        <li>Готовлю и подаю заявки на всех электронных площадках;</li>
+        <li>Сопровождаю подписание контракта и контроль оплаты;</li>
+        <li>Защищаю ваши права в ФАС, если Заказчик нарушает условия.</li>
+      </ul>
+      <p>Результат: вы выигрываете контракты без штрафов, судов и потерянного времени. Ваша прибыль растёт, моя — обеспечить систему, где вы побеждаете.</p>
+      <p>Работаю со всеми отраслями и основными электронными площадками: Сбербанк-АСТ, РТС-тендер, ZakazRF, ТЭК-Торг, ЭТП ГПБ, Битзар, Битуби Центр — 44-ФЗ, 223-ФЗ и коммерческие закупки. 10 лет опыта, 250+ закупок в год, 37 млн ₽ прибыли клиентов за 2025 год.</p>
+      <p>Форматы работы: разовая консультация, сопровождение одного тендера, абонентское обслуживание.</p>
+      <p class="sf-cta">Хотите проверить вашу текущую заявку на ошибки? Напишите мне — я сделаю это бесплатно. Без обязательств.</p>
+    </div>
   </div>
 </section>
 
-<!-- ОБУЧЕНИЕ -->
-<section id="learning">
+<!-- ФОРМАТЫ РАБОТЫ -->
+<section id="formats">
   <div class="section-inner">
-    <span class="section-label" style="color:var(--sage-md);">Знания и инструменты</span>
-    <h2 class="section-title section-title-light">Обучение и готовые материалы</h2>
-    <div class="learning-grid">
+    <span class="section-label" style="color:var(--sage-md);">Как мы сотрудничаем</span>
+    <h2 class="section-title section-title-light">Форматы работы</h2>
+    <div class="formats-grid">
 
-      <!-- ПЛАТНЫЕ МАТЕРИАЛЫ -->
-      <div class="learn-card">
-        <span class="learn-badge badge-paid">Платные материалы</span>
-        <h3>Шаблоны и чек-листы</h3>
-        <p>Готовые инструменты для участников тендеров. Экономьте время и не допускайте типичных ошибок.</p>
-        <ul class="learn-list">
-          <li>Чек-лист проверки документации заявки</li>
-          <li>Шаблон заявки на участие (44-ФЗ)</li>
-          <li>Шаблон жалобы в ФАС</li>
-          <li>Шаблон коммерческого предложения</li>
-        </ul>
+      <div class="format-card">
+        <div class="format-num">01</div>
+        <h3>Разовая консультация</h3>
+        <p class="format-desc">Аудит одного тендера, проверка документации, разбор ошибок.</p>
+        <span class="format-for">Для тех, кто хочет попробовать или сомневается.</span>
       </div>
 
-      <!-- НАСТАВНИЧЕСТВО — объединено с курсом -->
-      <div class="learn-card" style="grid-column: span 1;">
-        <span class="learn-badge badge-mentor">Наставничество</span>
-        <h3>Программа для тендерных специалистов</h3>
-        <p>Индивидуальная программа профессионального роста — от начинающего до уверенного эксперта. Включает курс по выходу на госзакупки для малого бизнеса.</p>
+      <div class="format-card">
+        <div class="format-num">02</div>
+        <h3>Сопровождение одного тендера</h3>
+        <p class="format-desc">Полный цикл: от поиска до контракта.</p>
+        <span class="format-for">Для компаний, которые участвуют эпизодически.</span>
+      </div>
 
-        <span class="learn-sublabel">Блок: Госзакупки для малого бизнеса</span>
-        <ul class="learn-list">
-          <li>Поиск и анализ подходящих закупок</li>
-          <li>Подготовка первой заявки без ошибок</li>
-          <li>Стратегия ценообразования на торгах</li>
-          <li>Исполнение контракта после победы</li>
-        </ul>
+      <div class="format-card">
+        <div class="format-num">03</div>
+        <h3>Абонентское обслуживание</h3>
+        <p class="format-desc">Поддержка всех тендеров в течение месяца / квартала. Фиксированная плата или процент от выигранного контракта.</p>
+        <span class="format-for">Для бизнеса со стабильным потоком закупок.</span>
+      </div>
 
-        <hr class="learn-divider"/>
+    </div>
+  </div>
+</section>
 
-        <span class="learn-sublabel">Блок: Наставничество для специалистов</span>
-        <ul class="learn-list">
-          <li>Личные сессии с разбором реальных кейсов</li>
-          <li>Проработка сложных ситуаций и протоколов</li>
-          <li>Карьерный рост и построение репутации</li>
-          <li>Закрытое профессиональное сообщество</li>
-          <li>Обратная связь по заявкам в реальном времени</li>
-        </ul>
+<!-- ЦЕНА -->
+<section id="price">
+  <div class="section-inner">
+    <span class="section-label">Прозрачные условия</span>
+    <h2 class="section-title">Как строится оплата</h2>
+    <div class="price-grid">
+
+      <div class="price-card">
+        <div class="price-label">Вариант 1</div>
+        <h3>Фиксированная плата</h3>
+        <p>Вы платите оговоренную сумму за этап или за тендер. Никаких скрытых платежей — вы точно знаете стоимость заранее.</p>
+      </div>
+
+      <div class="price-card">
+        <div class="price-label">Вариант 2</div>
+        <h3>Процент от контракта</h3>
+        <p>2–5% от суммы выигранного контракта. Я заинтересована в вашей победе — работаем на результат.</p>
+      </div>
+
+      <div class="price-card">
+        <div class="price-label">Вариант 3</div>
+        <h3>Гибридная схема</h3>
+        <p>Небольшая фиксированная часть на старте + процент от победы. Золотая середина между предсказуемостью и мотивацией.</p>
       </div>
 
     </div>
@@ -628,19 +769,26 @@
 <section id="cta">
   <h2>Готовы выйти на торги системно?</h2>
   <p>Запишитесь на бесплатную консультацию — разберём вашу ситуацию и подберём формат работы.</p>
-  <a href="https://t.me/Victoria_Anna_L" target="_blank" rel="noopener" class="btn-cta">Записаться на консультацию</a>
+  <a href="https://t.me/victoriaanna1313" target="_blank" rel="noopener" class="btn-cta">Записаться на консультацию</a>
   <div class="cta-contacts">
     <span class="cta-contacts-label">Почта:</span>
     <a href="mailto:9269696013vv@gmail.com">9269696013vv@gmail.com</a>
     <span class="cta-sep">·</span>
-    <a href="https://t.me/Victoria_Anna_L" target="_blank" rel="noopener">Telegram: @Victoria_Anna_L</a>
+    <a href="https://t.me/victoriaanna1313" target="_blank" rel="noopener">Telegram: @victoriaanna1313</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p contenteditable="true">© 2025 · Виктория-Анна Лесонен · Тендерное сопровождение · Lesotend</p>
+  <p>&copy; 2025 · Виктория-Анна Лесонен · Тендерное сопровождение · Lesotend</p>
 </footer>
 
+<script>
+document.querySelectorAll('nav a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    document.getElementById('nav-toggle').checked = false;
+  });
+});
+</script>
 </body>
 </html>
