@@ -282,7 +282,7 @@
   }
 
   /* SECTION COMMON */
-  section { padding: 6rem 5vw; }
+  section { padding: 6rem 5vw; position: relative; }
   .section-inner { max-width: 1100px; margin: 0 auto; }
   .section-label {
     font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
@@ -300,6 +300,19 @@
     line-height: 1.2; margin-bottom: 2.8rem;
   }
   .section-title-light { color: #fff; }
+
+  /* SECTION DIVIDER */
+  section + section::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 60px; height: 1px;
+    background: var(--sage-border);
+    pointer-events: none;
+  }
+  #hero::after, #hero::before { display: none; } /* restore hero's own pseudo-elements */
+  #hero + section::after { display: none; } /* no divider after hero */
 
   /* SERVICES */
   #services { background: var(--white); }
@@ -320,10 +333,17 @@
     transition: background 0.25s;
   }
   .service-card:hover { background: var(--stone); }
+  .service-card .srv-icon {
+    width: 32px; height: 32px;
+    color: var(--sage-md);
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .service-card .srv-icon svg { width: 100%; height: 100%; }
   .service-num {
     font-family: 'Playfair Display', serif;
     font-size: 0.8rem; color: var(--stone-dark);
-    letter-spacing: 0.1em; margin-bottom: 1.4rem;
+    letter-spacing: 0.1em; margin-bottom: 0.6rem;
   }
   .service-card h3 {
     font-family: 'Playfair Display', serif;
@@ -393,6 +413,85 @@
   }
   .services-footer .sf-cta a:hover { color: var(--charcoal); }
 
+  .btn-free {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.9rem 2.2rem;
+    background: var(--sage);
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid var(--sage);
+    border-radius: 2px;
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .btn-free:hover {
+    background: var(--charcoal);
+    border-color: var(--charcoal);
+  }
+
+  /* PROCESS / WORKFLOW */
+  #process { background: var(--charcoal); }
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1.5rem;
+    position: relative;
+  }
+  .process-grid::before {
+    content: '';
+    position: absolute;
+    top: 32px; left: 2rem; right: 2rem;
+    height: 1px;
+    background: rgba(106,144,153,0.2);
+    pointer-events: none;
+  }
+  .process-step {
+    text-align: center;
+    position: relative;
+  }
+  .process-step .p-circle {
+    width: 48px; height: 48px;
+    margin: 0 auto 1.2rem;
+    border-radius: 50%;
+    border: 1px solid rgba(106,144,153,0.35);
+    background: var(--charcoal-md);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  .process-step .p-svg {
+    width: 22px; height: 22px;
+    color: var(--sage-md);
+  }
+  .process-step::before {
+    content: '';
+    position: absolute;
+    top: 48px; left: 50%;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--sage-md);
+    opacity: 0.3;
+    transform: translateX(-50%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .process-step h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.4rem;
+  }
+  .process-step p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.42);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
   /* FORMATS */
   #formats { background: var(--charcoal); }
   .formats-grid {
@@ -411,6 +510,13 @@
     border-color: rgba(106,144,153,0.35);
     background: var(--charcoal-lt);
   }
+  .format-card .fmt-icon {
+    width: 28px; height: 28px;
+    color: var(--sage-md);
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .format-card .fmt-icon svg { width: 100%; height: 100%; }
   .format-num {
     font-family: 'Playfair Display', serif;
     font-size: 0.75rem;
@@ -460,6 +566,13 @@
     background: var(--white);
     border-color: var(--sage-border);
   }
+  .price-card .prc-icon {
+    width: 28px; height: 28px;
+    color: var(--sage);
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .price-card .prc-icon svg { width: 100%; height: 100%; }
   .price-card .price-label {
     font-size: 0.64rem;
     letter-spacing: 0.14em;
@@ -480,13 +593,86 @@
     font-weight: 300;
     line-height: 1.75;
   }
-  .price-card .price-note {
-    display: inline-block;
-    margin-top: 0.8rem;
-    font-size: 0.72rem;
-    color: var(--sage);
-    font-weight: 400;
+
+  /* MICRO CTA */
+  .micro-cta {
+    margin-top: 2.5rem;
+    text-align: center;
+    padding: 2rem;
+    background: var(--stone);
+    border: 1px solid var(--stone-dark);
+    border-radius: 2px;
   }
+  .micro-cta p {
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  .micro-cta .btn-micro {
+    display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.8rem 2rem;
+    background: transparent;
+    color: var(--sage);
+    text-decoration: none;
+    border: 1px solid var(--sage);
+    border-radius: 2px;
+    transition: background 0.25s, color 0.25s;
+  }
+  .micro-cta .btn-micro:hover {
+    background: var(--sage);
+    color: #fff;
+  }
+
+  /* FAQ */
+  #faq { background: var(--charcoal); }
+  .faq-list { max-width: 720px; margin: 0 auto; }
+  .faq-list details {
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 1rem 0;
+  }
+  .faq-list details:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
+  .faq-list summary {
+    list-style: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: color 0.2s;
+  }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after {
+    content: '+';
+    font-size: 1.1rem;
+    color: var(--sage-md);
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+  .faq-list details[open] summary::after {
+    transform: rotate(45deg);
+  }
+  .faq-list details[open] summary { color: var(--sage-md); }
+  .faq-list details .faq-answer {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.48);
+    font-weight: 300;
+    line-height: 1.8;
+    padding-top: 0.8rem;
+    padding-right: 2rem;
+  }
+  .faq-list details .faq-answer a {
+    color: var(--sage-md);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(106,144,153,0.3);
+  }
+  .faq-list details .faq-answer a:hover { color: #fff; }
 
   /* CTA */
   #cta {
@@ -510,6 +696,26 @@
     border: 1px solid rgba(106,144,153,0.09);
     pointer-events: none;
   }
+  .guarantee-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(74,107,111,0.15);
+    border: 1px solid rgba(106,144,153,0.25);
+    border-radius: 2px;
+    padding: 0.7rem 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    font-size: 0.82rem;
+    color: var(--sage-md);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+  .guarantee-badge .gb-icon {
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+  }
+  .guarantee-badge .gb-icon svg { width: 100%; height: 100%; }
   #cta h2 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(1.7rem, 3vw, 2.4rem);
@@ -525,18 +731,18 @@
     font-size: 0.75rem; font-weight: 600;
     letter-spacing: 0.14em; text-transform: uppercase;
     padding: 1rem 3rem;
-    background: rgba(74,107,111,0.2);
+    background: var(--sage);
     color: #fff;
     text-decoration: none;
-    border: 1px solid var(--sage-md);
+    border: 1px solid var(--sage);
     border-radius: 2px;
     transition: background 0.25s, border-color 0.25s;
     position: relative;
   }
   .btn-cta:hover {
-    background: var(--sage-md);
-    border-color: var(--sage-md);
-    color: #fff;
+    background: #fff;
+    border-color: #fff;
+    color: var(--charcoal);
   }
   .cta-contacts {
     margin-top: 2rem; position: relative;
@@ -556,15 +762,84 @@
 
   /* FOOTER */
   footer {
-    background: #1C1F25; text-align: center;
-    padding: 2rem; font-size: 0.76rem;
-    color: rgba(255,255,255,0.22); letter-spacing: 0.04em;
+    background: #1C1F25;
+    padding: 3rem 5vw 2rem;
   }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  .footer-brand {
+    display: flex; flex-direction: column; gap: 0.3rem;
+  }
+  .footer-brand .fb-logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.6rem;
+    color: var(--sage-md);
+    line-height: 1;
+  }
+  .footer-brand .fb-desc {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.04em;
+  }
+  .footer-links {
+    display: flex; gap: 2rem; flex-wrap: wrap;
+  }
+  .footer-links a {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--sage-md); }
+  .footer-bottom {
+    max-width: 1100px; margin: 2rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .footer-bottom p {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.04em;
+  }
+  .footer-bottom .to-top {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .footer-bottom .to-top:hover { color: var(--sage-md); }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+
+  /* SCROLL ANIMATIONS */
+  .fade-section {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  #hero { opacity: 1; transform: none; } /* hero always visible */
 
   @media (max-width: 800px) {
     #hero { grid-template-columns: 1fr; padding-top: 70px; }
@@ -588,6 +863,38 @@
 
     section { padding: 4rem 5vw; }
     .services-footer { padding: 1.5rem; }
+
+    .process-grid { position: relative; gap: 2.5rem; }
+    .process-grid::before {
+      display: none;
+    }
+    .process-step {
+      position: relative;
+      padding-left: 3rem;
+      text-align: left;
+    }
+    .process-step::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0;
+      width: 1px;
+      height: 100%;
+      background: rgba(106,144,153,0.15);
+      pointer-events: none;
+    }
+    .process-step:first-child::before { top: 50%; }
+    .process-step:last-child::before { height: 50%; }
+    .process-step .p-circle {
+      position: absolute;
+      left: -12px; top: 0;
+      width: 40px; height: 40px;
+      margin: 0;
+      flex-shrink: 0;
+    }
+    .process-step .p-svg { width: 18px; height: 18px; }
+
+    .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+    .footer-bottom { flex-direction: column; text-align: center; }
   }
 </style>
 </head>
@@ -601,6 +908,7 @@
   <span class="logo">Lesotend</span>
   <ul>
     <li><a href="#services">Услуги</a></li>
+    <li><a href="#process">Как работаю</a></li>
     <li><a href="#formats">Форматы</a></li>
     <li><a href="#price">Цены</a></li>
     <li><a href="#cta">Контакты</a></li>
@@ -641,13 +949,21 @@
 </section>
 
 <!-- УСЛУГИ -->
-<section id="services">
+<section id="services" class="fade-section">
   <div class="section-inner">
     <span class="section-label">Что я делаю</span>
     <h2 class="section-title">Услуги тендерного сопровождения</h2>
     <div class="services-grid">
 
       <div class="service-card">
+        <span class="srv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </span>
         <div class="service-num">01</div>
         <h3>Подготовка и подача заявки</h3>
         <div class="service-line"></div>
@@ -655,6 +971,12 @@
       </div>
 
       <div class="service-card">
+        <span class="srv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M16.5 16.5L21 21"/>
+          </svg>
+        </span>
         <div class="service-num">02</div>
         <h3>Поиск и отбор тендеров</h3>
         <div class="service-line"></div>
@@ -662,6 +984,12 @@
       </div>
 
       <div class="service-card">
+        <span class="srv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l9 4v7c0 5-9 9-9 9s-9-4-9-9V6z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </span>
         <div class="service-num">03</div>
         <h3>Работа с протоколами и жалобами</h3>
         <div class="service-line"></div>
@@ -669,6 +997,12 @@
       </div>
 
       <div class="service-card">
+        <span class="srv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </span>
         <div class="service-num">04</div>
         <h3>Сопровождение исполнения контракта</h3>
         <div class="service-line"></div>
@@ -676,6 +1010,13 @@
       </div>
 
       <div class="service-card">
+        <span class="srv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="8" width="18" height="12" rx="1"/>
+            <path d="M3 8l9-6 9 6"/>
+            <circle cx="12" cy="14" r="2"/>
+          </svg>
+        </span>
         <div class="service-num">05</div>
         <h3>Банковские гарантии и обеспечение</h3>
         <div class="service-line"></div>
@@ -684,7 +1025,6 @@
 
     </div>
 
-    <!-- Дополнительный текст под Услугами -->
     <div class="services-footer">
       <p class="sft">Тендерное сопровождение под ключ: от идеи до подписанного контракта</p>
       <p>Я — внешний тендерный отдел для вашего бизнеса. Беру на себя всю бюрократию, чтобы вы могли заниматься развитием, а не разбираться в 44-ФЗ.</p>
@@ -699,19 +1039,96 @@
       <p>Результат: вы выигрываете контракты без штрафов, судов и потерянного времени. Ваша прибыль растёт, моя — обеспечить систему, где вы побеждаете.</p>
       <p>Работаю со всеми отраслями и основными электронными площадками: Сбербанк-АСТ, РТС-тендер, ZakazRF, ТЭК-Торг, ЭТП ГПБ, Битзар, Битуби Центр — 44-ФЗ, 223-ФЗ и коммерческие закупки. 10 лет опыта, 250+ закупок в год, 37 млн ₽ прибыли клиентов за 2025 год.</p>
       <p>Форматы работы: разовая консультация, сопровождение одного тендера, абонентское обслуживание.</p>
-      <p class="sf-cta">Хотите проверить вашу текущую заявку на ошибки? Напишите мне — я сделаю это бесплатно. Без обязательств.</p>
+      <p class="sf-cta">Хотите проверить вашу текущую заявку на ошибки?</p>
+      <a href="https://t.me/victoriaanna1313" target="_blank" rel="noopener" class="btn-free">Написать в Telegram — проверю бесплатно</a>
+    </div>
+  </div>
+</section>
+
+<!-- КАК Я РАБОТАЮ -->
+<section id="process" class="fade-section">
+  <div class="section-inner">
+    <span class="section-label" style="color:var(--sage-md);">Мой подход</span>
+    <h2 class="section-title section-title-light">Как я работаю</h2>
+    <div class="process-grid">
+
+      <div class="process-step">
+        <div class="p-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="p-svg">
+            <path d="M4 4h16v14H8l-4 4V4z"/>
+            <line x1="8" y1="9" x2="16" y2="9"/>
+            <line x1="8" y1="13" x2="14" y2="13"/>
+          </svg>
+        </div>
+        <h3>Консультация</h3>
+        <p>Обсуждаем цели бизнеса, специфику и текущие закупки. Определяю, какой формат вам подходит.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="p-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="p-svg">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M16.5 16.5L21 21"/>
+          </svg>
+        </div>
+        <h3>Аналитика</h3>
+        <p>Ищу подходящие тендеры, оцениваю риски, маржинальность и вероятность победы.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="p-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="p-svg">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="12" y1="12" x2="12" y2="16"/>
+            <line x1="10" y1="14" x2="14" y2="14"/>
+          </svg>
+        </div>
+        <h3>Подготовка</h3>
+        <p>Готовлю заявку под требования площадки и заказчика. Проверяю на скрытые ошибки.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="p-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="p-svg">
+            <path d="M12 2l9 4v7c0 5-9 9-9 9s-9-4-9-9V6z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <h3>Подача и защита</h3>
+        <p>Подаю заявку, отслеживаю результаты. При необходимости — готовлю жалобу в ФАС.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="p-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="p-svg">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <h3>Контракт</h3>
+        <p>Сопровождаю подписание, контроль оплаты и закрывающие документы.</p>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- ФОРМАТЫ РАБОТЫ -->
-<section id="formats">
+<section id="formats" class="fade-section">
   <div class="section-inner">
     <span class="section-label" style="color:var(--sage-md);">Как мы сотрудничаем</span>
     <h2 class="section-title section-title-light">Форматы работы</h2>
     <div class="formats-grid">
 
       <div class="format-card">
+        <span class="fmt-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16v14H8l-4 4V4z"/>
+            <line x1="8" y1="9" x2="16" y2="9"/>
+            <line x1="8" y1="13" x2="14" y2="13"/>
+          </svg>
+        </span>
         <div class="format-num">01</div>
         <h3>Разовая консультация</h3>
         <p class="format-desc">Аудит одного тендера, проверка документации, разбор ошибок.</p>
@@ -719,6 +1136,13 @@
       </div>
 
       <div class="format-card">
+        <span class="fmt-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="12" cy="12" r="1"/>
+          </svg>
+        </span>
         <div class="format-num">02</div>
         <h3>Сопровождение одного тендера</h3>
         <p class="format-desc">Полный цикл: от поиска до контракта.</p>
@@ -726,6 +1150,13 @@
       </div>
 
       <div class="format-card">
+        <span class="fmt-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="1"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+            <path d="M8 2v4M16 2v4"/>
+          </svg>
+        </span>
         <div class="format-num">03</div>
         <h3>Абонентское обслуживание</h3>
         <p class="format-desc">Поддержка всех тендеров в течение месяца / квартала. Фиксированная плата или процент от выигранного контракта.</p>
@@ -737,36 +1168,114 @@
 </section>
 
 <!-- ЦЕНА -->
-<section id="price">
+<section id="price" class="fade-section">
   <div class="section-inner">
     <span class="section-label">Прозрачные условия</span>
     <h2 class="section-title">Как строится оплата</h2>
     <div class="price-grid">
 
       <div class="price-card">
+        <span class="prc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 2h8l10 10-8 8L2 12V2z"/>
+            <circle cx="6" cy="6" r="1" fill="currentColor"/>
+          </svg>
+        </span>
         <div class="price-label">Вариант 1</div>
         <h3>Фиксированная плата</h3>
         <p>Вы платите оговоренную сумму за этап или за тендер. Никаких скрытых платежей — вы точно знаете стоимость заранее.</p>
       </div>
 
       <div class="price-card">
+        <span class="prc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="21" x2="21" y2="21"/>
+            <polyline points="5 17 10 12 14 15 19 8"/>
+          </svg>
+        </span>
         <div class="price-label">Вариант 2</div>
         <h3>Процент от контракта</h3>
         <p>2–5% от суммы выигранного контракта. Я заинтересована в вашей победе — работаем на результат.</p>
       </div>
 
       <div class="price-card">
+        <span class="prc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8" cy="6" r="4"/>
+            <rect x="2" y="12" width="12" height="10" rx="2"/>
+          </svg>
+        </span>
         <div class="price-label">Вариант 3</div>
         <h3>Гибридная схема</h3>
         <p>Небольшая фиксированная часть на старте + процент от победы. Золотая середина между предсказуемостью и мотивацией.</p>
       </div>
 
     </div>
+
+    <div class="micro-cta">
+      <p>Не знаете, какой вариант подходит вашему бизнесу? Напишите — подберём за 5 минут.</p>
+      <a href="https://t.me/victoriaanna1313" target="_blank" rel="noopener" class="btn-micro">Написать в Telegram</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="fade-section">
+  <div class="section-inner">
+    <span class="section-label" style="color:var(--sage-md);">Частые вопросы</span>
+    <h2 class="section-title section-title-light">Отвечаю на сомнения</h2>
+    <div class="faq-list">
+
+      <details>
+        <summary>Сколько стоят ваши услуги?</summary>
+        <div class="faq-answer">
+          У меня три формата: разовая консультация (аудит одного тендера), сопровождение одного тендера (полный цикл) и абонентское обслуживание на месяц/квартал. Конкретную сумму называю после знакомства с вашей ситуацией — чтобы не продавать лишнего. <a href="#price">Подробнее о ценах →</a>
+        </div>
+      </details>
+
+      <details>
+        <summary>Что, если я не выиграю тендер?</summary>
+        <div class="faq-answer">
+          Это часть процесса. Если заявка подготовлена правильно — шансы кратно выше средних. Но гарантии победы не даёт никто — торги есть торги. Однако я так уверена в качестве своей работы, что даю гарантию: <strong>если не выиграли — следующую заявку подготовлю бесплатно</strong>. Получается, рискую я, а не вы.
+        </div>
+      </details>
+
+      <details>
+        <summary>С какими отраслями вы работаете?</summary>
+        <div class="faq-answer">
+          Со всеми. Строительство, поставки, IT, медицина, услуги — не было отрасли, с которой я бы не работала. Главное, чтобы ваша компания могла участвовать в госзакупках по 44-ФЗ или 223-ФЗ.
+        </div>
+      </details>
+
+      <details>
+        <summary>Нужно ли платить за консультацию?</summary>
+        <div class="faq-answer">
+          Нет. Первая консультация — бесплатная. Я знакомлюсь с вашим бизнесом, смотрю текущую ситуацию и даю честную оценку: стоит ли вообще участвовать, какие риски и какой формат подойдёт. <a href="https://t.me/victoriaanna1313" target="_blank" rel="noopener">Напишите в Telegram →</a>
+        </div>
+      </details>
+
+      <details>
+        <summary>Работаете ли вы с ИП и самозанятыми?</summary>
+        <div class="faq-answer">
+          Да. Если ваш ИП может участвовать в закупках — я помогу. Для малого бизнеса у меня отдельная программа с пониженным порогом входа.
+        </div>
+      </details>
+
+    </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section id="cta">
+<section id="cta" class="fade-section">
+  <div class="guarantee-badge">
+    <span class="gb-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2l9 4v7c0 5-9 9-9 9s-9-4-9-9V6z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+    </span>
+    Не выиграли тендер — следующую заявку подготовлю бесплатно
+  </div>
   <h2>Готовы выйти на торги системно?</h2>
   <p>Запишитесь на бесплатную консультацию — разберём вашу ситуацию и подберём формат работы.</p>
   <a href="https://t.me/victoriaanna1313" target="_blank" rel="noopener" class="btn-cta">Записаться на консультацию</a>
@@ -780,14 +1289,43 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>&copy; 2025 · Виктория-Анна Лесонен · Тендерное сопровождение · Lesotend</p>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="fb-logo">Lesotend</span>
+      <span class="fb-desc">Тендерное сопровождение под ключ</span>
+    </div>
+    <div class="footer-links">
+      <a href="#services">Услуги</a>
+      <a href="#process">Как работаю</a>
+      <a href="#formats">Форматы</a>
+      <a href="#price">Цены</a>
+      <a href="#cta">Контакты</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 · Виктория-Анна Лесонен · Lesotend · <a href="privacy-policy.html" target="_blank" style="color:rgba(255,255,255,0.2); text-decoration:underline;">Политика конфиденциальности</a></p>
+    <a href="#" class="to-top">Наверх ↑</a>
+  </div>
 </footer>
 
+<noscript><style>.fade-section { opacity: 1 !important; transform: none !important; }</style></noscript>
 <script>
 document.querySelectorAll('nav a').forEach(function(link) {
   link.addEventListener('click', function() {
     document.getElementById('nav-toggle').checked = false;
   });
+});
+
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-section').forEach(function(el) {
+  observer.observe(el);
 });
 </script>
 </body>
